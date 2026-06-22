@@ -66,7 +66,7 @@ Never overwrite existing generated views unless the user explicitly asks. Use ve
 Build local feature crops:
 
 ```bash
-python3 /Users/a111/.codex/skills/ai3d-human-five-view/scripts/build_character_reference_crops.py \
+python3 ~/.codex/skills/ai3d-human-five-view/scripts/build_character_reference_crops.py \
   --spec crop_spec.json \
   --photo-dir Assets/Reference/HeroPhotos \
   --out-dir Assets/Reference/HeroCrops
@@ -75,7 +75,7 @@ python3 /Users/a111/.codex/skills/ai3d-human-five-view/scripts/build_character_r
 Make a five-view contact sheet:
 
 ```bash
-python3 /Users/a111/.codex/skills/ai3d-human-five-view/scripts/make_view_contact_sheet.py \
+python3 ~/.codex/skills/ai3d-human-five-view/scripts/make_view_contact_sheet.py \
   --views-dir Assets/Reference/HeroGeneratedViews \
   --prefix hero \
   --out Assets/Reference/HeroGeneratedViews/hero_five_view_contact_sheet.png

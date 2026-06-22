@@ -63,19 +63,19 @@ Never overwrite existing generated views unless the user explicitly asks. Use ve
 Build local feature crops:
 
 ```bash
-python3 /Users/a111/.codex/skills/ai3d-cat-five-view/scripts/build_reference_crops.py \
+python3 ~/.codex/skills/ai3d-cat-five-view/scripts/build_reference_crops.py \
   --spec crop_spec.json \
-  --photo-dir Assets/Reference/TargetCatPhotos \
-  --out-dir Assets/Reference/TargetCatCrops
+  --photo-dir Assets/Reference/CatPhotos \
+  --out-dir Assets/Reference/CatCrops
 ```
 
 Make a five-view contact sheet:
 
 ```bash
-python3 /Users/a111/.codex/skills/ai3d-cat-five-view/scripts/make_view_contact_sheet.py \
-  --views-dir Assets/Reference/TargetCatGeneratedViews \
-  --prefix targetcat \
-  --out Assets/Reference/TargetCatGeneratedViews/targetcat_five_view_contact_sheet.png
+python3 ~/.codex/skills/ai3d-cat-five-view/scripts/make_view_contact_sheet.py \
+  --views-dir Assets/Reference/CatGeneratedViews \
+  --prefix cat \
+  --out Assets/Reference/CatGeneratedViews/cat_five_view_contact_sheet.png
 ```
 
 ## Non-Negotiables
