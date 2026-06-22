@@ -28,8 +28,8 @@ If the user asks to generate images, use the built-in `imagegen` skill/tool by d
 4. Write or update the modeling reference document with the character brief, feature parameters, style rules, input package paths, prompt strategy, and review rubric.
 5. Generate five views with one prompt per view: front, back, left side, right side, top. Keep one shared identity/style block and change only camera direction.
 6. Prefer five subagents when the user explicitly requests parallel agents. Assign one output file per worker. If subagents are unavailable, generate sequentially with the same prompts.
-7. Copy final generated images from the built-in generated-images location into the project output directory.
-8. Run `scripts/make_view_contact_sheet.py` to make a five-view review sheet.
+7. Run `scripts/organize_generation_outputs.py` after generation. Put final five view images under `GeneratedViews/views/` and prompts, previews, contact sheets, manifests, and other support artifacts under `GeneratedViews/support/`.
+8. Run `scripts/make_view_contact_sheet.py` from the `views/` folder and save the review sheet under `support/`.
 9. Review structure first: silhouette, proportions, clothing layers, hands, feet, back design, prop separation, style consistency, and AI3D repairability. Do not accept a pretty view with broken structure.
 
 ## Output Layout
@@ -41,12 +41,16 @@ Assets/Reference/
   <Subject>Photos/
   <Subject>Crops/
   <Subject>GeneratedViews/
-    <prefix>_front_view.png
-    <prefix>_back_view.png
-    <prefix>_left_side_view.png
-    <prefix>_right_side_view.png
-    <prefix>_top_view.png
-    <prefix>_five_view_contact_sheet.png
+    views/
+      <prefix>_front_view.png
+      <prefix>_back_view.png
+      <prefix>_left_side_view.png
+      <prefix>_right_side_view.png
+      <prefix>_top_view.png
+    support/
+      <prefix>_five_view_contact_sheet.png
+      <prefix>_organization_manifest.json
+      prompts, previews, drafts, and other support files
   <Subject>AI3DInput/
   <Subject>_ModelingReference.md
 ```
@@ -72,13 +76,23 @@ python3 ~/.codex/skills/ai3d-human-five-view/scripts/build_character_reference_c
   --out-dir Assets/Reference/HeroCrops
 ```
 
+Organize generated images, prompts, and previews:
+
+```bash
+python3 ~/.codex/skills/ai3d-human-five-view/scripts/organize_generation_outputs.py \
+  --source-dir .codex/generated_images \
+  --views-dir Assets/Reference/HeroGeneratedViews/views \
+  --support-dir Assets/Reference/HeroGeneratedViews/support \
+  --prefix hero
+```
+
 Make a five-view contact sheet:
 
 ```bash
 python3 ~/.codex/skills/ai3d-human-five-view/scripts/make_view_contact_sheet.py \
-  --views-dir Assets/Reference/HeroGeneratedViews \
+  --views-dir Assets/Reference/HeroGeneratedViews/views \
   --prefix hero \
-  --out Assets/Reference/HeroGeneratedViews/hero_five_view_contact_sheet.png
+  --out Assets/Reference/HeroGeneratedViews/support/hero_five_view_contact_sheet.png
 ```
 
 ## Non-Negotiables
@@ -87,5 +101,6 @@ python3 ~/.codex/skills/ai3d-human-five-view/scripts/make_view_contact_sheet.py 
 - Default to neutral A-pose: arms slightly away from torso, palms and fingers readable, feet fully visible. Use T-pose only when requested or when preparing a dedicated T-pose input package.
 - Keep one identity/style block across all prompts. The prompt deltas should only describe the view direction.
 - Prioritize structure before color: body proportion, head-to-body ratio, silhouette, garment layers, hands, feet, and back design must survive before material polish.
+- Keep the project output organized: only the final five angle images belong in `GeneratedViews/views/`; prompts, previews, drafts, review sheets, and manifests belong in `GeneratedViews/support/`.
 - Preserve traceability: crops, generated images, prompts, and review notes should point back to source references.
 - Treat merged clothing, hidden hands/feet, random back design, fused props, or inconsistent proportions as failed AI3D input.

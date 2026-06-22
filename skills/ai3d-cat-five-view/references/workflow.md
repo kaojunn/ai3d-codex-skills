@@ -100,20 +100,29 @@ Each worker writes only its assigned file and reports the prompt summary. If sub
 
 Built-in image generation saves under `.codex/generated_images` first. Copy final assets into the project output directory and leave the original generated image in place.
 
-Recommended names:
+Use `organize_generation_outputs.py` immediately after generation so view files and support files do not mix.
+
+Recommended layout:
 
 ```text
-<prefix>_front_view.png
-<prefix>_back_view.png
-<prefix>_left_side_view.png
-<prefix>_right_side_view.png
-<prefix>_top_view.png
-<prefix>_five_view_contact_sheet.png
+<Subject>GeneratedViews/
+  views/
+    <prefix>_front_view.png
+    <prefix>_back_view.png
+    <prefix>_left_side_view.png
+    <prefix>_right_side_view.png
+    <prefix>_top_view.png
+  support/
+    <prefix>_five_view_contact_sheet.png
+    <prefix>_organization_manifest.json
+    prompts, previews, drafts, and other support files
 ```
+
+Default to copy mode when organizing from `.codex/generated_images`. Use `--mode move` only when cleaning a project-local folder that already contains mixed generated files.
 
 ## 8. Review
 
-Create a contact sheet and check:
+Create a contact sheet from `GeneratedViews/views/`, save it to `GeneratedViews/support/`, and check:
 
 - Correct view directions.
 - Same individual across views.

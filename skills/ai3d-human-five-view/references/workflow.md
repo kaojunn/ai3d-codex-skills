@@ -115,12 +115,15 @@ When preparing for actual AI3D generation, save:
     material_board.png
     negative_references.png
   03_character_refs/
-    <subject>_five_view_contact_sheet.png
-    <subject>_front_view.png
-    <subject>_back_view.png
-    <subject>_left_side_view.png
-    <subject>_right_side_view.png
-    <subject>_top_view.png
+    five_views/
+      <subject>_front_view.png
+      <subject>_back_view.png
+      <subject>_left_side_view.png
+      <subject>_right_side_view.png
+      <subject>_top_view.png
+    five_view_support/
+      <subject>_five_view_contact_sheet.png
+      <subject>_organization_manifest.json
     <subject>_tpose_color.png
     <subject>_tpose_line.png
     <subject>_head_turnaround.png
@@ -137,20 +140,29 @@ T-pose, line art, head turnaround, prop breakdown, material board, and palette a
 
 Built-in image generation saves under `.codex/generated_images` first. Copy final assets into the project output directory and leave the original generated image in place.
 
-Recommended names:
+Use `organize_generation_outputs.py` immediately after generation so view files and support files do not mix.
+
+Recommended layout:
 
 ```text
-<prefix>_front_view.png
-<prefix>_back_view.png
-<prefix>_left_side_view.png
-<prefix>_right_side_view.png
-<prefix>_top_view.png
-<prefix>_five_view_contact_sheet.png
+<Subject>GeneratedViews/
+  views/
+    <prefix>_front_view.png
+    <prefix>_back_view.png
+    <prefix>_left_side_view.png
+    <prefix>_right_side_view.png
+    <prefix>_top_view.png
+  support/
+    <prefix>_five_view_contact_sheet.png
+    <prefix>_organization_manifest.json
+    prompts, previews, drafts, and other support files
 ```
+
+Default to copy mode when organizing from `.codex/generated_images`. Use `--mode move` only when cleaning a project-local folder that already contains mixed generated files.
 
 ## 9. Review
 
-Create a contact sheet and check:
+Create a contact sheet from `GeneratedViews/views/`, save it to `GeneratedViews/support/`, and check:
 
 - Correct orthographic view direction.
 - Same individual across all views.

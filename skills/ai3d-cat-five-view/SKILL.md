@@ -27,8 +27,8 @@ If the user asks to generate images, use the built-in `imagegen` skill/tool by d
 4. Write or update the modeling reference document with the identity anchors, feature parameters, photo roles, and AI3D constraints.
 5. Generate five views with one prompt per view: front, back, left side, right side, top. Keep the shared identity block identical and change only camera direction.
 6. Prefer five subagents when the user explicitly requests parallel agents. Assign one output file per worker. If subagents are unavailable, generate sequentially with the same prompts.
-7. Copy final generated images from the built-in generated-images location into the project output directory.
-8. Run `scripts/make_view_contact_sheet.py` to make a five-view review sheet.
+7. Run `scripts/organize_generation_outputs.py` after generation. Put final five view images under `GeneratedViews/views/` and prompts, previews, contact sheets, manifests, and other support artifacts under `GeneratedViews/support/`.
+8. Run `scripts/make_view_contact_sheet.py` from the `views/` folder and save the review sheet under `support/`.
 9. Review and report risks: view direction, pose, body consistency, color consistency, tail continuity, background cleanliness, and whether any view is too stylized or too far from the subject.
 
 ## Output Layout
@@ -40,12 +40,16 @@ Assets/Reference/
   <Subject>Photos/
   <Subject>Crops/
   <Subject>GeneratedViews/
-    <prefix>_front_view.png
-    <prefix>_back_view.png
-    <prefix>_left_side_view.png
-    <prefix>_right_side_view.png
-    <prefix>_top_view.png
-    <prefix>_five_view_contact_sheet.png
+    views/
+      <prefix>_front_view.png
+      <prefix>_back_view.png
+      <prefix>_left_side_view.png
+      <prefix>_right_side_view.png
+      <prefix>_top_view.png
+    support/
+      <prefix>_five_view_contact_sheet.png
+      <prefix>_organization_manifest.json
+      prompts, previews, drafts, and other support files
   <Subject>_ModelingReference.md
 ```
 
@@ -69,13 +73,23 @@ python3 ~/.codex/skills/ai3d-cat-five-view/scripts/build_reference_crops.py \
   --out-dir Assets/Reference/CatCrops
 ```
 
+Organize generated images, prompts, and previews:
+
+```bash
+python3 ~/.codex/skills/ai3d-cat-five-view/scripts/organize_generation_outputs.py \
+  --source-dir .codex/generated_images \
+  --views-dir Assets/Reference/CatGeneratedViews/views \
+  --support-dir Assets/Reference/CatGeneratedViews/support \
+  --prefix cat
+```
+
 Make a five-view contact sheet:
 
 ```bash
 python3 ~/.codex/skills/ai3d-cat-five-view/scripts/make_view_contact_sheet.py \
-  --views-dir Assets/Reference/CatGeneratedViews \
+  --views-dir Assets/Reference/CatGeneratedViews/views \
   --prefix cat \
-  --out Assets/Reference/CatGeneratedViews/cat_five_view_contact_sheet.png
+  --out Assets/Reference/CatGeneratedViews/support/cat_five_view_contact_sheet.png
 ```
 
 ## Non-Negotiables
@@ -83,5 +97,6 @@ python3 ~/.codex/skills/ai3d-cat-five-view/scripts/make_view_contact_sheet.py \
 - Use orthographic, technical reference framing: plain light background, complete body, minimal shadow, no props, no text.
 - Use four-foot neutral standing pose for front/back/side views unless the user explicitly asks otherwise.
 - Keep identity consistent across all prompts. The prompt deltas should only describe the view direction.
+- Keep the project output organized: only the final five angle images belong in `GeneratedViews/views/`; prompts, previews, drafts, review sheets, and manifests belong in `GeneratedViews/support/`.
 - Preserve traceability: every crop and generated image should be traceable to source photos, prompt text, and review notes.
 - Treat a pretty image with wrong anatomy or wrong identity as a failed AI3D input.
