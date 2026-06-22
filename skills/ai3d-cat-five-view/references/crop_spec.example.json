@@ -1,0 +1,28 @@
+{
+  "contact_sheet": {
+    "filename": "contact_sheet.jpg",
+    "columns": 3,
+    "thumb_width": 320,
+    "thumb_height": 270
+  },
+  "crops": [
+    {
+      "source": "DSC00151.jpg",
+      "output": "01_overall_identity.jpg",
+      "label": "overall identity",
+      "box": [300, 560, 825, 1345]
+    },
+    {
+      "source": "DSC00102.jpg",
+      "output": "02_standing_structure.jpg",
+      "label": "standing structure",
+      "box": [235, 650, 1035, 1285]
+    },
+    {
+      "source": "DSC00027.jpg",
+      "output": "03_face_and_chest.jpg",
+      "label": "face and chest",
+      "box": [300, 300, 790, 1225]
+    }
+  ]
+}

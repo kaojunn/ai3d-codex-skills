@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI3D Cat Five View"
+  short_description: "Generate AI3D-ready cat five views"
+  default_prompt: "Use $ai3d-cat-five-view to turn this cat photo set into front, back, left, right, and top AI3D reference views."
+
+policy:
+  allow_implicit_invocation: true

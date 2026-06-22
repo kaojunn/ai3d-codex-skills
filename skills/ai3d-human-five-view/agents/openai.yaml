@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI3D Human Five View"
+  short_description: "Create AI3D-ready five-view character references."
+  default_prompt: "使用 $ai3d-human-five-view 从这组人物/角色参考资料中提取特征，并生成用于 AI3D 建模的正、后、左、右、顶五视图参考图。"

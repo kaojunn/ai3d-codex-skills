@@ -1,0 +1,64 @@
+{
+  "contact_sheet": {
+    "filename": "contact_sheet.jpg",
+    "columns": 3,
+    "thumb_width": 320,
+    "thumb_height": 360
+  },
+  "crops": [
+    {
+      "source": "character_front.png",
+      "output": "01_full_body_silhouette.jpg",
+      "label": "full body silhouette",
+      "box": [120, 40, 820, 1180]
+    },
+    {
+      "source": "character_front.png",
+      "output": "02_face_and_hair.jpg",
+      "label": "face and hair",
+      "box": [280, 40, 650, 420]
+    },
+    {
+      "source": "character_side.png",
+      "output": "03_side_structure.jpg",
+      "label": "side structure",
+      "box": [160, 60, 760, 1180]
+    },
+    {
+      "source": "character_back.png",
+      "output": "04_back_design.jpg",
+      "label": "back design",
+      "box": [130, 40, 820, 1180]
+    },
+    {
+      "source": "character_front.png",
+      "output": "05_torso_clothing_layers.jpg",
+      "label": "torso clothing layers",
+      "box": [230, 360, 720, 790]
+    },
+    {
+      "source": "character_front.png",
+      "output": "06_hands_sleeves.jpg",
+      "label": "hands and sleeves",
+      "box": [120, 520, 820, 880]
+    },
+    {
+      "source": "character_front.png",
+      "output": "07_legs_boots_feet.jpg",
+      "label": "legs boots feet",
+      "box": [210, 760, 740, 1180]
+    },
+    {
+      "source": "character_props.png",
+      "output": "08_props_accessories.jpg",
+      "label": "props and accessories",
+      "box": [60, 80, 900, 900]
+    },
+    {
+      "source": "character_materials.png",
+      "output": "09_materials_palette.jpg",
+      "label": "materials and palette",
+      "box": [40, 40, 920, 700]
+    }
+  ]
+}
