@@ -1,6 +1,6 @@
 ---
 name: ai3d-human-five-view
-description: Create consistent AI3D-ready five-view human or stylized character reference images from photo sets, concept art, character briefs, or design boards. Use for people, characters, 人物, 角色, 人设, stylized 3D character workflows, AI3D five-view packages, orthographic front/back/left/right/top views, T-pose or A-pose input preparation, feature extraction, crop boards, prompt planning, multi-agent image generation, and structure-first review before AI 3D modeling.
+description: Create consistent AI3D-ready five-view human or stylized character reference images with a rigging-friendly T-pose by default and explicit A-pose override support. Use for people, characters, 人物, 角色, 人设, stylized 3D character workflows, orthographic front/back/left/right/top views, shoulder and armpit separation, T-pose or A-pose input preparation, feature extraction, crop boards, prompt planning, multi-agent image generation, and structure-first review before AI 3D modeling or skeletal rigging.
 ---
 
 # AI3D Human Five View
@@ -14,7 +14,7 @@ Confirm or infer:
 - Source photo, concept, or reference directory.
 - Subject name or output prefix.
 - Output root, defaulting to `Assets/Reference/`.
-- Desired pose family: default A-pose, or T-pose when explicitly requested.
+- Desired pose family: default T-pose, or A-pose only when explicitly requested.
 - Whether to update or create a modeling reference document.
 - Existing character brief, style guide, three-view sheet, T-pose image, or AI3D input package.
 
@@ -23,7 +23,7 @@ If the user asks to generate images, use the built-in `imagegen` skill/tool by d
 ## Workflow
 
 1. Inspect the reference set and classify images into P0/P1/P2 production roles.
-2. Extract identity and build constraints before prompting: role, age range, body type, head-to-body ratio, silhouette, face, hair, clothing layers, hands, feet, props, materials, color palette, and hard rejection traits.
+2. Extract identity and build constraints before prompting: role, age range, body type, head-to-body ratio, silhouette, face, hair, shoulder width, arm span, upper-arm volume, armhole and armpit clearance, clothing layers, hands, feet, props, materials, color palette, and hard rejection traits.
 3. Build a local crop board when useful. Use `scripts/build_character_reference_crops.py` with a crop spec to create focused feature crops and a contact sheet.
 4. Write or update the modeling reference document with the character brief, feature parameters, style rules, input package paths, prompt strategy, and review rubric.
 5. Generate five views with one prompt per view: front, back, left side, right side, top. Keep one shared identity/style block and change only camera direction.
@@ -98,9 +98,12 @@ python3 ~/.codex/skills/ai3d-human-five-view/scripts/make_view_contact_sheet.py 
 ## Non-Negotiables
 
 - Use orthographic, technical reference framing: plain white or light gray background, full body visible, minimal shadow, no scene, no text, no watermark.
-- Default to neutral A-pose: arms slightly away from torso, palms and fingers readable, feet fully visible. Use T-pose only when requested or when preparing a dedicated T-pose input package.
+- Default to a neutral T-pose: both arms abducted horizontally at shoulder height to form a straight line, elbows extended, palms facing down, fingers naturally together, legs straight, and feet parallel. Use A-pose only when the user explicitly requests it.
+- Preserve the same pose across all five views. Side and top views must not lower, bend, omit, or redesign the arms.
+- Keep visible background clearance through both armpits. Sleeves, upper arms, shoulders, and torso must have separate readable contours suitable for mesh separation and skeletal rigging.
+- Frame wide enough to include both hands at full arm span. Scale the character down or use a wider canvas rather than cropping fingers, hands, hat, or feet.
 - Keep one identity/style block across all prompts. The prompt deltas should only describe the view direction.
 - Prioritize structure before color: body proportion, head-to-body ratio, silhouette, garment layers, hands, feet, and back design must survive before material polish.
 - Keep the project output organized: only the final five angle images belong in `GeneratedViews/views/`; prompts, previews, drafts, review sheets, and manifests belong in `GeneratedViews/support/`.
 - Preserve traceability: crops, generated images, prompts, and review notes should point back to source references.
-- Treat merged clothing, hidden hands/feet, random back design, fused props, or inconsistent proportions as failed AI3D input.
+- Treat lowered arms, bent elbows, uneven arm length, closed armpits, sleeves or upper arms fused to the torso, merged clothing, hidden hands/feet, random back design, fused props, or inconsistent proportions as failed AI3D input.

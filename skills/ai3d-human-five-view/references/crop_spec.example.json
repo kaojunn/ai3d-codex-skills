@@ -38,8 +38,8 @@
     },
     {
       "source": "character_front.png",
-      "output": "06_hands_sleeves.jpg",
-      "label": "hands and sleeves",
+      "output": "06_shoulders_armpits_sleeves_hands.jpg",
+      "label": "shoulders armholes armpits sleeves and hands",
       "box": [120, 520, 820, 880]
     },
     {

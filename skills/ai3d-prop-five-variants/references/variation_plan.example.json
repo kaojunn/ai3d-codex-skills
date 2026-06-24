@@ -1,0 +1,66 @@
+{
+  "target": {
+    "prop_name": "example_prop",
+    "prefix": "example_prop",
+    "category": "artifact or designed object",
+    "function": "record the unchanged function",
+    "variation_strength": "medium_controlled"
+  },
+  "locked_features": {
+    "era_style": ["record historical period or design language"],
+    "required_components": ["record components that must remain"],
+    "palette": ["main color", "secondary color", "accent color"],
+    "color_placement": ["record which structural region carries each color"],
+    "pattern": ["motif content", "sequence", "orientation", "structural region"],
+    "materials": ["main material", "secondary material"],
+    "surface_wear": ["record texture, glaze, oxidation, scratches, or wear level"],
+    "signature_details": ["record identity anchors"],
+    "symmetry": "symmetric or deliberate asymmetry"
+  },
+  "forbidden_changes": [
+    "category or function",
+    "historical era or style family",
+    "component inventory",
+    "palette or color placement",
+    "pattern content or structural location",
+    "material stack or wear language",
+    "camera, perspective, lighting, or background"
+  ],
+  "variants": [
+    {
+      "id": "01",
+      "role": "standardized_prototype",
+      "primary_axis": "none",
+      "secondary_axis": "cleanup_only",
+      "change_description": "Preserve source geometry; isolate and standardize the exact front view."
+    },
+    {
+      "id": "02",
+      "role": "overall_proportion",
+      "primary_axis": "width_height_ratio_and_silhouette",
+      "secondary_axis": "taper",
+      "change_description": "Apply one medium controlled overall proportion change."
+    },
+    {
+      "id": "03",
+      "role": "mass_distribution",
+      "primary_axis": "main_body_to_base_rim_or_top_ratio",
+      "secondary_axis": "transition_position",
+      "change_description": "Redistribute major masses without changing components."
+    },
+    {
+      "id": "04",
+      "role": "contour_language",
+      "primary_axis": "edge_corner_or_curve_treatment",
+      "secondary_axis": "shoulder_or_side_curvature",
+      "change_description": "Change contour language while preserving identity."
+    },
+    {
+      "id": "05",
+      "role": "accessory_geometry",
+      "primary_axis": "one_major_accessory_shape",
+      "secondary_axis": "accessory_mount_position",
+      "change_description": "Change one major accessory structure while preserving function."
+    }
+  ]
+}

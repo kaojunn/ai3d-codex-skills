@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI3D Prop Five Variants"
+  short_description: "Generate five shape variants from one prop reference."
+  default_prompt: "使用 $ai3d-prop-five-variants 从一个道具参考生成一件标准化原型和四件保持颜色、花纹、材质及识别特征的受控形状派生正视图。"

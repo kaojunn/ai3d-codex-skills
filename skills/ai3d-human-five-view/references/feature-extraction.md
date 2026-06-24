@@ -22,9 +22,11 @@ Extract each dimension from multiple references when possible:
 | Silhouette | large hair, hood, hat, robe, cape, backpack, apron, boots, tool shape | losing the far-view recognizable outline |
 | Face and expression | face shape, nose/mouth/eyes, expression intensity, ethnicity/region if specified | glamorized generic face, wrong age, excessive expression |
 | Hair/headwear | hair mass, bangs, ponytail, bun, braid, hood, scarf, hat, visible back shape | hair changes between front/back, headwear floats or fuses |
-| Neck/shoulders/torso | shoulder width, neck length, chest/waist relationship, spine posture | front and side torso volumes contradict |
+| Neck/shoulders/torso | shoulder width, shoulder-joint height, neck length, chest/waist relationship, spine posture | front and side torso volumes contradict, shoulders rise during T-pose |
+| Arm span and symmetry | fingertip-to-fingertip span, upper-arm length and volume, forearm length, straight elbow alignment, left/right symmetry | shortened arms, uneven length, bent elbows, missing or duplicated limbs |
+| Armholes and armpits | sleeve opening, armhole seam, upper-arm clearance, visible background gap between arm and torso | closed armpits, sleeve or upper arm fused into torso, unreadable shoulder topology |
 | Clothing layers | inner shirt, outer coat/robe, belt, apron, scarf, armor, cape, skirt, pants | merged garments, unreadable openings, random seams |
-| Sleeves/hands | sleeve length, cuffs, gloves, visible fingers, hand pose | hands hidden, fused fingers, sleeves swallow hands |
+| Sleeves/hands | sleeve length, cuffs, gloves, visible fingers, palms-down T-pose hand orientation | hands hidden, fused fingers, sleeves swallow hands, wrong palm direction |
 | Lower body/feet | pants/skirt shape, leg length, boots/shoes, sole visibility, stance width | hidden feet, cropped shoes, unstable stance |
 | Props/accessories | bags, tools, weapons, jewelry, charms, glasses; separate vs attached | props fused to body, random extra ornaments, missing required prop |
 | Materials | cloth, leather, wood, metal, worn fabric, dust, painted surfaces | material only works as texture, not geometry |
@@ -53,6 +55,8 @@ Examples:
 Always include negative constraints for:
 
 - Wrong pose or wrong view angle.
+- A-pose unless explicitly requested, lowered or diagonal arms, bent elbows, raised shoulders, uneven arm length, or wrong palm direction.
+- Closed armpits, missing background clearance, or sleeves/upper arms fused into the torso.
 - Wrong age, body type, or head-to-body ratio.
 - Hidden hands, fused fingers, cropped feet, or swallowed shoes.
 - Merged clothing layers, random garment openings, or unreadable back view.
@@ -65,13 +69,15 @@ Always include negative constraints for:
 
 For initial AI3D input, prefer:
 
-1. Readable full-body anatomy.
-2. Correct head-to-body ratio and silhouette.
-3. Clear clothing layer boundaries.
-4. Hands, fingers, feet, boots, sleeves, hems, belts, and collars that can be repaired.
-5. Back design that matches the front and side logic.
-6. Required props that are separated or intentionally attached.
-7. Major color blocks and material language.
-8. Fine texture, pattern, and surface polish.
+1. Complete, consistent T-pose with level arms, straight elbows, palms down, and full arm span.
+2. Open, readable armpits with shoulders, armholes, sleeves, upper arms, and torso clearly separated.
+3. Readable full-body anatomy.
+4. Correct head-to-body ratio and silhouette.
+5. Clear clothing layer boundaries.
+6. Hands, fingers, feet, boots, sleeves, hems, belts, and collars that can be repaired.
+7. Back design that matches the front and side logic.
+8. Required props that are separated or intentionally attached.
+9. Major color blocks and material language.
+10. Fine texture, pattern, and surface polish.
 
 Reject beautiful images if structure, pose, identity, or repairability is wrong.

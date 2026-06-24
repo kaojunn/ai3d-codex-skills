@@ -7,7 +7,8 @@ Collect:
 - Reference directory and subject name.
 - Existing character brief, style rules, or modeling reference document.
 - Desired output root, defaulting to `Assets/Reference/`.
-- Required pose: A-pose by default, T-pose only when requested.
+- Required pose: T-pose by default, A-pose only when explicitly requested.
+- T-pose convention: arms horizontal at shoulder height, elbows straight, palms down, fingers naturally together, legs straight, and feet parallel.
 - Required style: photoreal, stylized 3D, hand-painted, low-poly, anime, painterly, or project-specific.
 - Hard requirements: image size, background, naming, whether to update documentation, and whether to use parallel agents.
 
@@ -36,7 +37,7 @@ Write the character as buildable constraints before generating images:
 - One paragraph identity definition.
 - 8-12 hard identity anchors.
 - Negative constraints.
-- Pose and view constraints.
+- Pose and view constraints, including palm direction, shoulder-joint height, arm span, and armpit clearance.
 - Style rules and material language.
 - Prop separation decisions.
 
@@ -56,7 +57,7 @@ Recommended crop groups:
 - Hair shape.
 - Headwear or large silhouette element.
 - Torso and neckline.
-- Sleeves and hands.
+- Shoulders, armholes, armpits, sleeves, and hands.
 - Waist, belt, apron, or middle layer.
 - Legs, pants, skirt, boots, and feet.
 - Props, bags, tools, weapons, or accessories.
@@ -72,6 +73,7 @@ Write or update a project-local document that includes:
 - Reference index and P0/P1/P2 roles.
 - Character brief and identity anchors.
 - Feature parameter table.
+- Pose specification: T-pose or explicit A-pose override, palm direction, shoulder-joint height, arm span, upper-arm volume, and required armpit clearance.
 - Style rules, palette, materials, and forbidden references.
 - Five-view generation strategy.
 - Prompt templates and negative prompts.
@@ -89,6 +91,13 @@ Generate five independent images:
 - Top.
 
 Use one shared identity/style block. Only change the `View request` paragraph. Keep pose, background, lighting, line/rendering style, and negative constraints identical.
+
+The default five-view set must preserve one complete T-pose in every direction:
+
+- Front and back: both arms form a level shoulder-to-wrist line and both hands remain in frame.
+- Left and right side: keep a strict side camera. Arms extend along the camera axis, so the near arm may occlude the far arm, but the shoulder, armhole, armpit gap, sleeve, elbow, wrist, and hand must remain structurally readable. Never lower the arms to make the side view easier.
+- Top: preserve the complete fingertip-to-fingertip T silhouette and do not crop either hand.
+- Use a wider canvas or reduce character scale when the full arm span does not fit.
 
 If the user explicitly requests agents, spawn five workers:
 
@@ -124,7 +133,6 @@ When preparing for actual AI3D generation, save:
     five_view_support/
       <subject>_five_view_contact_sheet.png
       <subject>_organization_manifest.json
-    <subject>_tpose_color.png
     <subject>_tpose_line.png
     <subject>_head_turnaround.png
     <subject>_prop_breakdown.png
@@ -134,7 +142,7 @@ When preparing for actual AI3D generation, save:
     negative_prompt.md
 ```
 
-T-pose, line art, head turnaround, prop breakdown, material board, and palette are optional unless the target AI3D tool requires them.
+The five final views are already the default T-pose color references. A separate T-pose line-art image is optional when the target AI3D tool benefits from simplified structural input. Head turnaround, prop breakdown, material board, and palette remain optional unless required by the target tool.
 
 ## 8. Project Save Policy
 
@@ -167,6 +175,11 @@ Create a contact sheet from `GeneratedViews/views/`, save it to `GeneratedViews/
 - Correct orthographic view direction.
 - Same individual across all views.
 - Same pose family and background.
+- Default T-pose is consistent across all five views; accept A-pose only when the user explicitly requested it.
+- Arms are level at shoulder height, elbows are straight, palms face down, fingers are naturally together, and left/right arm length is consistent.
+- Both armpits show visible background clearance in front and back views; sleeves, upper arms, and torso are not fused.
+- Side views remain strict orthographic sides while preserving the T-pose along the camera axis.
+- Top view includes the complete fingertip-to-fingertip arm span.
 - Full body visible with hands, feet, hair, clothing, and props not cropped.
 - Head-to-body ratio and body proportions stay consistent.
 - Front, side, and back garment layers do not contradict each other.
@@ -176,4 +189,4 @@ Create a contact sheet from `GeneratedViews/views/`, save it to `GeneratedViews/
 - Color palette and material language match the brief.
 - No environment, dramatic lighting, smoke, text, watermark, or random ornaments.
 
-Regenerate any view that fails view direction, identity, proportions, hands/feet readability, back design, or prop separation.
+Regenerate any view that fails view direction, identity, proportions, T-pose consistency, armpit clearance, shoulder/arm separation, hands/feet readability, back design, or prop separation.

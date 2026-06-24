@@ -1,0 +1,58 @@
+{
+  "contact_sheet": {
+    "filename": "contact_sheet.jpg",
+    "columns": 3,
+    "thumb_width": 320,
+    "thumb_height": 320
+  },
+  "crops": [
+    {
+      "source": "prop_reference_front.png",
+      "output": "01_overall_prop.jpg",
+      "label": "P0 overall target prop only",
+      "box": [120, 80, 820, 760]
+    },
+    {
+      "source": "prop_reference_front.png",
+      "output": "02_front_face.jpg",
+      "label": "P0 front face and silhouette",
+      "box": [180, 120, 760, 650]
+    },
+    {
+      "source": "prop_reference_back.png",
+      "output": "03_back_face.jpg",
+      "label": "P1 back face and closures",
+      "box": [160, 120, 780, 660]
+    },
+    {
+      "source": "prop_reference_side.png",
+      "output": "04_side_thickness.jpg",
+      "label": "P1 side profile and thickness",
+      "box": [160, 120, 780, 660]
+    },
+    {
+      "source": "prop_reference_top.png",
+      "output": "05_top_footprint.jpg",
+      "label": "P1 top footprint",
+      "box": [120, 80, 820, 760]
+    },
+    {
+      "source": "prop_reference_detail.png",
+      "output": "06_attachment_contact.jpg",
+      "label": "P1 attachment or contact area",
+      "box": [200, 180, 720, 620]
+    },
+    {
+      "source": "prop_reference_detail.png",
+      "output": "07_fine_details.jpg",
+      "label": "P1 hinges straps locks lenses seams",
+      "box": [260, 160, 700, 560]
+    },
+    {
+      "source": "prop_reference_material.png",
+      "output": "08_material_color.jpg",
+      "label": "P1 materials and color palette",
+      "box": [80, 80, 860, 700]
+    }
+  ]
+}

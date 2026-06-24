@@ -1,4 +1,4 @@
 interface:
   display_name: "AI3D Human Five View"
   short_description: "Create AI3D-ready five-view character references."
-  default_prompt: "使用 $ai3d-human-five-view 从这组人物/角色参考资料中提取特征，并生成用于 AI3D 建模的正、后、左、右、顶五视图参考图。"
+  default_prompt: "使用 $ai3d-human-five-view 从这组人物/角色参考资料中提取特征，并生成用于 AI3D 建模和骨骼绑定的标准 T-pose 正、后、左、右、顶五视图参考图；双臂水平外展 90 度、肘部伸直、掌心朝下，并确保腋窝、袖子、上臂与躯干轮廓清晰分离。"

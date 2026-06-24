@@ -15,14 +15,13 @@ Prepare the minimum package:
 - Character AI3D generation brief.
 - Negative constraints.
 - Style rules.
-- Five orthographic views.
+- Five orthographic T-pose views, unless the user explicitly requested an A-pose override.
 - Prompt files.
 - Generation log.
 
 Add optional but recommended support:
 
-- T-pose color view.
-- T-pose line art.
+- T-pose line art derived from the final views when simplified structural input is useful.
 - Head turnaround.
 - Prop breakdown.
 - Material board.
@@ -36,6 +35,8 @@ The brief must describe:
 - Character type and role.
 - Age range and body type.
 - Head-to-body ratio.
+- Pose convention: default T-pose or an explicitly requested A-pose override.
+- Shoulder width, shoulder-joint height, arm span, upper-arm volume, palm direction, and required armpit clearance.
 - Silhouette keywords.
 - Clothing layers from inside to outside.
 - Props and whether each prop should be separate.
@@ -52,7 +53,10 @@ AI3D tools read structure better than atmospheric art. Prefer:
 - Full body, no cropped feet or hands.
 - Front, side, and back views as close to orthographic as possible.
 - Consistent body proportions and outfit between views.
-- Arms not pressed against the torso.
+- One complete T-pose across all five views: arms horizontal at shoulder height, elbows straight, palms down, fingers naturally together, legs straight, and feet parallel.
+- Visible background clearance through both armpits; shoulders, armholes, sleeves, upper arms, and torso are separate readable contours.
+- Side views retain strict side cameras while the arms extend along the camera axis; arms must not be lowered for visibility.
+- Top view includes the complete fingertip-to-fingertip arm span.
 - Sleeves and cuffs not hiding hand shape.
 - Back view explicitly designed.
 - Line art with style noise removed when preparing T-pose line input.
@@ -80,7 +84,6 @@ Do not use final mood art as the primary AI3D input when it hides structure behi
     <subject>_right_side_view.png
     <subject>_top_view.png
     <subject>_five_view_contact_sheet.png
-    <subject>_tpose_color.png
     <subject>_tpose_line.png
     <subject>_head_turnaround.png
     <subject>_prop_breakdown.png
@@ -101,6 +104,8 @@ Do not use final mood art as the primary AI3D input when it hides structure behi
 
 ```text
 stylized 3D game character, full body, orthographic reference input,
+complete T-pose, arms horizontal at shoulder height, straight elbows, palms down,
+visible background gaps through both armpits, sleeves and upper arms separated from torso,
 clear silhouette, consistent head-to-body ratio, readable garment layers,
 readable hands and boots, clean collar sleeves belt hem structure,
 hand painted material style, low-poly blocky planes where appropriate,
@@ -112,6 +117,8 @@ simple background, no dramatic lighting, no environment, no extra ornaments
 ```text
 photorealistic skin if stylized is required, random jewelry, festival costume,
 excessive patterns, merged clothes, fused fingers, hidden feet, cropped body,
+lowered arms, bent elbows, raised shoulders, uneven arm length, closed armpits,
+sleeves fused to torso, upper arms fused to torso, missing or duplicated arms,
 dramatic smoke, complex background, weapon not in reference, unreadable back view,
 wrong age, wrong body type, wrong head-to-body ratio, props fused to body
 ```
@@ -142,6 +149,8 @@ Grade each generated model:
 | --- | --- | --- |
 | Silhouette | recognizable from far view | hair, robe, bag, and limbs fuse |
 | Proportion | head-to-body, shoulders, hands, and feet match references | adultified, childified, too thin, too bulky |
+| T-pose | level shoulder-height arms, straight elbows, palms down, equal arm span | lowered/bent/uneven/missing arms or wrong palm direction |
+| Armpits/shoulders | visible clearance and separable shoulder, sleeve, upper-arm, torso volumes | closed armpits or fused mesh-prone contours |
 | Front/side/back | back is not random | front and back clothing contradict |
 | Clothing layers | inner/outer layers, belt, hem, boots are separate | clothes and body are glued together |
 | Hands/feet | fingers, cuffs, shoes can be repaired | melted hands, feet swallowed by hem |

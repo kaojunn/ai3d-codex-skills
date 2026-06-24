@@ -1,0 +1,40 @@
+{
+  "contact_sheet": {
+    "filename": "contact_sheet.jpg",
+    "columns": 3,
+    "thumb_width": 320,
+    "thumb_height": 320
+  },
+  "crops": [
+    {
+      "source": "prop_reference.png",
+      "output": "01_overall_prop.jpg",
+      "label": "P0 overall target and front silhouette",
+      "box": [120, 80, 820, 760]
+    },
+    {
+      "source": "prop_reference.png",
+      "output": "02_color_pattern.jpg",
+      "label": "P0 color blocks and pattern regions",
+      "box": [180, 120, 760, 650]
+    },
+    {
+      "source": "prop_detail.png",
+      "output": "03_material_wear.jpg",
+      "label": "P1 material texture and wear",
+      "box": [160, 120, 780, 660]
+    },
+    {
+      "source": "prop_detail.png",
+      "output": "04_signature_details.jpg",
+      "label": "P1 signature components and hardware",
+      "box": [200, 160, 720, 620]
+    },
+    {
+      "source": "prop_reference.png",
+      "output": "05_variable_geometry.jpg",
+      "label": "P0 shape-variable rim base handle or contour",
+      "box": [140, 100, 800, 720]
+    }
+  ]
+}

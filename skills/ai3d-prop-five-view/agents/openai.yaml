@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI3D Prop Five View"
+  short_description: "Generate one-prop AI3D five-view references."
+  default_prompt: "使用 $ai3d-prop-five-view 从单件道具或可拆部件参考中提取结构、颜色、材质和尺寸信息，并生成用于 AI3D 建模的正、后、左、右、顶五视图参考包。"
